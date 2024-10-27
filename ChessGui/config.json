@@ -20,6 +20,5 @@
   "SquareSize": 101,
   "EnginePath": "%USERPROFILE%\\Downloads\\stockfish-windows-x86-64\\stockfish\\stockfish-windows-x86-64.exe",
   "MoveTime": 2000,
-  "Strength": 20,
-  "MaxTries": 1000
+  "Strength": 0
 }

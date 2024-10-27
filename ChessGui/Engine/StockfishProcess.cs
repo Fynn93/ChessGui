@@ -1,27 +1,20 @@
 ﻿using System.Diagnostics;
 
-namespace ChessGui.Stockfish;
+namespace ChessGui.Engine;
 
-public class StockfishProcess
+public class StockfishProcess(string enginePath)
 {
-    private readonly string _enginePath;
-    private readonly Process _process;
-
-    public StockfishProcess(string enginePath)
+    private readonly Process _process = new()
     {
-        _enginePath = enginePath;
-        _process = new Process
+        StartInfo = new ProcessStartInfo
         {
-            StartInfo = new ProcessStartInfo
-            {
-                FileName = _enginePath,
-                UseShellExecute = false,
-                RedirectStandardError = true,
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true
-            }
-        };
-    }
+            FileName = enginePath,
+            UseShellExecute = false,
+            RedirectStandardError = true,
+            RedirectStandardInput = true,
+            RedirectStandardOutput = true
+        }
+    };
 
     ~StockfishProcess()
     {
@@ -35,7 +28,7 @@ public class StockfishProcess
 
     public void Wait(int millisecond)
     {
-        this._process.WaitForExit(millisecond);
+        _process.WaitForExit(millisecond);
     }
 
     public void WriteLine(string command)
